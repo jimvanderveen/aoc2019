@@ -33,7 +33,12 @@ def Fuel_Needed(mass):
     # To find the fuel required for a module, take its mass, divide by
     # three, round down, and subtract 2. But what if this results in a
     # negative number?
-    return int(mass/3)-2
+    # Aha! A recusion problem... The tyranny of the rocket equation!
+    fuel_mass = int(mass/3)-2
+    if fuel_mass > 0:
+        return fuel_mass + Fuel_Needed(fuel_mass)
+    else:
+        return 0
 
 
 if __name__ == '__main__':
